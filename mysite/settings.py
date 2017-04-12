@@ -1,5 +1,6 @@
 import os
-
+import ldap
+from django_auth_ldap.config import LDAPSearch
 
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
 PACKAGE_ROOT = os.path.abspath(os.path.dirname(__file__))
@@ -182,5 +183,10 @@ ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 2
 ACCOUNT_USE_AUTH_AUTHENTICATE = True
 
 AUTHENTICATION_BACKENDS = [
-    "account.auth_backends.UsernameAuthenticationBackend",
+    'django_auth_ldap.backend.LDAPBackend',
+    'django.contrib.auth.backends.ModelBackend',
 ]
+
+AUTH_LDAP_SERVER_URI = 'ldap://LDAP-APAC:389'
+
+AUTH_LDAP_BIND_DN =
